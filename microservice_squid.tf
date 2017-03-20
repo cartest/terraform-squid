@@ -1,5 +1,7 @@
 module "microservice_squid" {
   source                          = "github.com/cartest/terraform-microservice.git"
+  additional_security_group_ids   = ["${var.microservice_additional_sg_ids}"]
+  asg_enabled_metrics             = "GroupTerminatingInstances,GroupMaxSize,GroupDesiredCapacity,GroupPendingInstances,GroupInServiceInstances,GroupMinSize,GroupTotalInstances"
   asg_size_max                    = "${var.squid_asg_size_max}"
   asg_size_min                    = "${var.squid_asg_size_min}"
   availability_zones              = "${var.availability_zones}"
@@ -12,7 +14,6 @@ module "microservice_squid" {
   subnets_map_public_ip_on_launch = true
   subnets_route_tables            = ["${var.pub_route_table}"]
   vpc_id                          = "${var.vpc_id}"
-  asg_enabled_metrics             = "GroupTerminatingInstances,GroupMaxSize,GroupDesiredCapacity,GroupPendingInstances,GroupInServiceInstances,GroupMinSize,GroupTotalInstances"
 
   tags {
     Environment = "${var.environment}"
