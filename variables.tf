@@ -33,6 +33,7 @@ variable "healthcheck_path" {
 variable "healthcheck_port" {
   type        = "string"
   description = "Port used for healthcheck traffic"
+  default     = "9999"
 }
 
 variable "microservice" {
@@ -55,6 +56,7 @@ variable "project" {
 variable "proxy_port" {
   type        = "string"
   description = "Port used for proxy traffic"
+  default     = "3128"
 }
 
 variable "pub_route_table" {
